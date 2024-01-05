@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="etM-jw-e1h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="etM-jw-e1h">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,6 +40,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="X0G-t0-quQ" kind="show" identifier="ShowDocumentSegue" id="5tq-NB-XI9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -70,8 +74,39 @@
             </objects>
             <point key="canvasLocation" x="-185.49618320610685" y="-673.23943661971839"/>
         </scene>
+        <!--Document View Controller-->
+        <scene sceneID="5Z2-Vb-gx6">
+            <objects>
+                <viewController id="X0G-t0-quQ" customClass="DocumentViewController" customModule="Document_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EDC-fd-rRk">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Q6m-IZ-IZS">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tn6-ha-ieU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Q6m-IZ-IZS" firstAttribute="top" secondItem="tn6-ha-ieU" secondAttribute="top" id="JsF-Y4-O0T"/>
+                            <constraint firstItem="Q6m-IZ-IZS" firstAttribute="leading" secondItem="tn6-ha-ieU" secondAttribute="leading" id="Nkj-X5-uyn"/>
+                            <constraint firstItem="Q6m-IZ-IZS" firstAttribute="centerX" secondItem="EDC-fd-rRk" secondAttribute="centerX" id="Qvd-bV-gTe"/>
+                            <constraint firstItem="Q6m-IZ-IZS" firstAttribute="bottom" secondItem="tn6-ha-ieU" secondAttribute="bottom" id="fyJ-76-o6Q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fX7-x9-lIw"/>
+                    <connections>
+                        <outlet property="imageView" destination="Q6m-IZ-IZS" id="PZh-v1-cpe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUt-bH-Oas" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1510.6870229007634" y="-673.23943661971839"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="cat1.jpg" width="5304" height="7952"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

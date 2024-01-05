@@ -17,6 +17,7 @@
 		DF4170DC2B20C98600B231D4 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DF4170DB2B20C98600B231D4 /* cat2.jpg */; };
 		DF4170DE2B20C9CB00B231D4 /* cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DF4170D82B20C91B00B231D4 /* cat1.jpg */; };
 		DF4170DF2B20C9D000B231D4 /* cat3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DF4170DD2B20C98900B231D4 /* cat3.jpg */; };
+		DFB683832B45DDF4006F936F /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB683822B45DDF4006F936F /* DocumentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		DF4170D82B20C91B00B231D4 /* cat1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat1.jpg; sourceTree = "<group>"; };
 		DF4170DB2B20C98600B231D4 /* cat2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat2.jpg; sourceTree = "<group>"; };
 		DF4170DD2B20C98900B231D4 /* cat3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat3.jpg; sourceTree = "<group>"; };
+		DFB683822B45DDF4006F936F /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				DF4170DA2B20C92800B231D4 /* images */,
 				DF4170BC2B20A4EC00B231D4 /* AppDelegate.swift */,
 				DF4170BE2B20A4EC00B231D4 /* SceneDelegate.swift */,
+				DFB683822B45DDF4006F936F /* DocumentViewController.swift */,
 				DF4170C02B20A4EC00B231D4 /* ViewController.swift */,
 				DF4170C22B20A4EC00B231D4 /* Main.storyboard */,
 				DF4170D02B20AD1600B231D4 /* DocumentTableViewController.swift */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFB683832B45DDF4006F936F /* DocumentViewController.swift in Sources */,
 				DF4170C12B20A4EC00B231D4 /* ViewController.swift in Sources */,
 				DF4170BD2B20A4EC00B231D4 /* AppDelegate.swift in Sources */,
 				DF4170D12B20AD1600B231D4 /* DocumentTableViewController.swift in Sources */,

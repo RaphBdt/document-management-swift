@@ -25,18 +25,7 @@ class DocumentTableViewController: UITableViewController {
         var url: URL
         var type: String
         
-        static var fakeData = [
-            DocumentFile(title: "Document 1", size: 100, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 2", size: 200, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 3", size: 300, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 4", size: 400, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 5", size: 500, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 6", size: 600, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 7", size: 700, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 8", size: 800, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-                DocumentFile(title: "Document 9", size: 900, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-            DocumentFile(title: "Document 10", size: 1000, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain")
-        ]
+        static var filesData = [DocumentFile]()
     }
     
     override func viewDidLoad() {
@@ -44,14 +33,33 @@ class DocumentTableViewController: UITableViewController {
                 
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
-        let items = try! fm.contentsOfDirectory(atPath: path)
         
-        for item in items {
-            if item.hasPrefix("cat") {
-                let url = URL(fileURLWithPath: path + "/" + item)
-                //url.resourceValues(forKeys: [.typeIdentifierKey, .nameKey, .fileSize])
-                pictures.append(item)
-            }
+        do {
+            let items = try fm.contentsOfDirectory(atPath: path)
+            
+            for item in items {
+                    if item.hasPrefix("cat") {
+                        let url = URL(fileURLWithPath: path + "/" + item)
+                        let resourceValues = try url.resourceValues(forKeys: [.typeIdentifierKey, .nameKey, .fileSizeKey])
+
+                        // Create a new DocumentFile instance
+                        let documentFile = DocumentFile(
+                            title: resourceValues.name ?? item,
+                            size: resourceValues.fileSize ?? 0,
+                            imageName: nil,
+                            url: url,
+                            type: resourceValues.typeIdentifier ?? "unknown"
+                        )
+
+                        // Append the new instance to filesData
+                        DocumentFile.filesData.append(documentFile)
+
+                        // Append the item to the pictures array
+                        pictures.append(item)
+                    }
+                }
+        } catch {
+            print("Error: \(error)")
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -59,7 +67,9 @@ class DocumentTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        print(pictures)
+        
+        
+        // print(pictures)
     }
 
     // MARK: - Table view data source
@@ -72,15 +82,15 @@ class DocumentTableViewController: UITableViewController {
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return DocumentFile.fakeData.count
+        return DocumentFile.filesData.count
     }
     
     // Indique au Controller comment remplir la cellule avec les données
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell", for: indexPath)
 
-        cell.textLabel?.text = DocumentFile.fakeData[indexPath.row].title
-        cell.detailTextLabel?.text = String(DocumentFile.fakeData[indexPath.row].size.formattedSize())
+        cell.textLabel?.text = DocumentFile.filesData[indexPath.row].title
+        cell.detailTextLabel?.text = String(DocumentFile.filesData[indexPath.row].size.formattedSize())
         
         return cell
     }
@@ -121,14 +131,26 @@ class DocumentTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // 1. Récuperer l'index de la ligne sélectionnée
+        // 2. Récuperer le document correspondant à l'index
+        // 3. Cibler l'instance de DocumentViewController via le segue.destination
+        // 4. Caster le segue.destination en DocumentViewController
+        // 5. Remplir la variable imageName de l'instance de DocumentViewController avec le nom de l'image du document
+        
+        if segue.identifier == "ShowDocumentSegue" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                
+                let selectedDocument = DocumentFile.filesData[indexPath.row]
+                
+                if let documentViewController = segue.destination as? DocumentViewController {
+                    documentViewController.imageName = selectedDocument.title
+                }
+            }
+        }
     }
-    */
-
 }
