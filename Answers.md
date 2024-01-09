@@ -58,3 +58,34 @@ La NavigationBar est un élément de l'interface qui permet de naviguer entre le
 ## Exercice 2
 - Qu’est-ce qu’une constraint ? A quoi sert-elle ? Quel est le lien avec AutoLayout ?
  une règle qui définit comment un élément se place et se comporte dans une interface. AutoLayout est un mécanisme de disposition automatique qui permet de créer des interfaces utilisateur flexibles et adaptables à différentes tailles d'écran et orientations.
+
+# 9 - QLPreview
+## Exercice 1
+- Pourquoi serait-il plus pertinent de changer l’accessory de nos cellules pour un disclosureIndicator ?
+Il serait plus judicieux d'utiliser le disclosureIndicator car il est utilisé pour indiquer qu'il y a une hiérarchie de contenue. Utile si on doit permettre aux utilisateurs d'accéder aux sous-vues d'une liste ou d'une ligne de tableau
+
+# 10 - Importations
+## Questions
+- Qu'est-ce qu'un #selector en swift ?
+#selector sert à avoir une référence d'une méthode ou une fonction lors de la mise en place d'actions avec de la gestion d'événements
+
+- Que représente .add dans notre appel ?
+ .add indique un bouton d'ajout prédéfini. Différentes valeurs sont possibles comme .done, .edit, etc., chacune représentant un style de bouton prédéfini.
+  
+- Expliquez également pourquoi XCode vous demande de mettre le mot clé @objc devant la fonction ciblée par le #selector
+La plupart des processus d'action d'interface utilisateur, tels que les boutons et les gestes, sont basés sur Objective-C.
+
+- Peut-on ajouter plusieurs boutons dans la barre de navigation ? Si oui, comment en code ?
+créer un tableau de UIBarButtonItem et les attribuer à la propriété rightBarButtonItems ou leftBarButtonItems de la propriété navigationItem
+
+Exemple --> 
+let editImage    = UIImage(named: "plus")!
+  let searchImage  = UIImage(named: "search")!
+
+  let editButton   = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
+  let searchButton = UIBarButtonItem(image: searchImage,  style: .Plain, target: self, action: "didTapSearchButton:")
+
+  navigationItem.rightBarButtonItems = [editButton, searchButton]
+
+- A quoi sert la fonction defer  ?
+A éxécuter du code, peu importe sa taille / son importance avant que le scope dans lequel il est ne disparaisse
